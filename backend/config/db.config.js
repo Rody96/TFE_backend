@@ -1,8 +1,8 @@
-module.exports = {
-  host: '37.187.54.217',
+  module.exports = {
+  host: process.env.HOST,
   port: 3306,
-  username: 'rodrigue',
-  password: 'PaulGeorge13',
+  username: process.env.USERNAME,
+  password: process.env.PASSWORD,
   dialect: 'mariadb',
-  database: 'tfe',
+  database: process.env.DATABASE,
 };
