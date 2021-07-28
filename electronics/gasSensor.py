@@ -12,7 +12,7 @@ def main_func():
     gasMeasurement = decoded_values
 
     print(gasMeasurement)
-    r = requests.post("http://localhost:8080/airquality/add", data = {'ppm': gasMeasurement, 'userId':1})
+    r = requests.post("https://rodrigue-projects.site/airquality/add", data = {'ppm': gasMeasurement, 'userId':1})
     print(r.text)
 
 
