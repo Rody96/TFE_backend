@@ -6,5 +6,7 @@ const controllerHumidity = require("../controllers/humidity.controller");
   router.post('/add', controllerHumidity.addHumidityeMeasure);
   //Search one humidity measure
   router.get("/:id", controllerHumidity.findOneHumidityMeasure);
-
+  //Retrieve all Humidity measurements
+  router.get("/all", (req,res) => controllerHumidity.getAllHumidityMeasures(req,res));
+ 
   module.exports = router;

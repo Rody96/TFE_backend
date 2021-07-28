@@ -26,6 +26,12 @@ exports.addHumidityeMeasure = (req, res) => {
     });
 };
 
+exports.getAllHumidityMeasures = (req,res) => {
+	Humidity.findAll()
+	.then(results => res.json(results))
+	.catch(error => res.status(400).json({error}));
+};
+
 exports.findOneHumidityMeasure = (req, res) => {
   const id = req.params.id;
 
