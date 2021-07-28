@@ -39,3 +39,9 @@ exports.findOneTemperatureMeasure = (req, res) => {
       });
     });
 };
+
+exports.getAllTemperatureMeasures = function(req, res) {
+    Temperature.findAll()
+        .then(results => res.json(results))
+        .catch(error => res.status(400).json({error}));
+};
