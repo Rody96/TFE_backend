@@ -28,7 +28,7 @@ gasMeasurement = ""
 
 print('Program started')
 
-schedule.every(3).seconds.do(main_func)
+schedule.every(60).seconds.do(main_func)
 
 while True:
     schedule.run_pending()
