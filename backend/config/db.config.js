@@ -1,8 +1,8 @@
 module.exports = {
-  host: process.env.HOST,
+  host: process.env.DB_HOST,
   port: 3306,
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   dialect: 'mariadb',
-  database: process.env.DATABASE,
+  database: process.env.DB,
 };
