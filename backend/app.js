@@ -4,29 +4,34 @@ const https = require('https');
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+const bodyParser = require("body-parser");
 require('dotenv').config();
 const path = require('path');
 const session = require('express-session');
 
 /////////////// HTTPS /////////////////
-app.use(express.static(__dirname + '/', { dotfiles: 'allow' }))
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/chain.pem', 'utf8');
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
+//app.use(express.static(__dirname + '/', { dotfiles: 'allow' }))
+//const privateKey = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/privkey.pem', 'utf8');
+//const certificate = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/cert.pem', 'utf8');
+//const ca = fs.readFileSync('/etc/letsencrypt/live/rodrigue-projects.site/chain.pem', 'utf8');
+//const credentials = {
+	//key: privateKey,
+//	cert: certificate,
+//	ca: ca
+//};
 //////////////////////////////////////
 
+/////////////BODY PARSER/////////////////////////////////////////////////
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+////////////////////////////////////////////////////////////////////////
+
 ////////////////CORS//////////////////////////
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+const corsConfig = {
+  credentials: true,
+  origin: true,
+};
+app.use(cors(corsConfig));
 ///////////////// Passport ///////////////////////////
 
 const passport = require('passport');
@@ -38,11 +43,6 @@ require('./config/passport.config')(passport, modelUsers);
 module.exports = passport;
 //////////////////////////////////////////////////////
 
-/////////////BODY PARSER/////////////////////////////////////////////////
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-////////////////////////////////////////////////////////////////////////
 
 /////////////////// DB /////////////////////////////
 const seq = require("./config/sequelize.config");
@@ -66,7 +66,7 @@ app.use("/users", usersRoute);
 ///////////////////// PORT //////////////////////////
 // set port, listen for requests
 //const httpServer = http.createServer(app);
-const httpServer = http.createServer((req,res) => {
+/* const httpServer = http.createServer((req,res) => {
 
 	res.writeHead(301,{Location: `https://${req.headers.host}${req.url}`});
 	res.end();
@@ -77,7 +77,15 @@ httpServer.listen(80);
 
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443');
+}); */
+//////////////////////////////////////////////////////
+
+
+const PORT = process.env.PORT || '3000';
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname+'/index.html'));
 });
 //////////////////////////////////////////////////////
 
+app.listen(PORT);
 /////////////////////////////////////////////////////
