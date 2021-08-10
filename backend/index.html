@@ -7,7 +7,7 @@
     <script>
 
         function send(){
-            fetch("https://rodrigue-projects.site/users/signin", {
+            fetch("https://tfe-api.herokuapp.com/users/signin", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,7 +26,7 @@
         }
 
             function logout(){
-            const url = 'https://rodrigue-projects.site/users/logout'
+            const url = 'https://tfe-api.herokuapp.com/users/logout'
             fetch(url, {
             method: 'GET',
             headers: {
