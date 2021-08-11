@@ -1,4 +1,7 @@
-const Humidity = require("../models/humidity.model");
+const db = require("../models");
+const Humidity = db.humidity;
+
+const Op = db.Sequelize.Op;
 
 exports.addHumidityeMeasure = (req, res) => {
   if (!req.body.airHumidity) {
@@ -38,4 +41,10 @@ exports.findOneHumidityMeasure = (req, res) => {
         message: "Error retrieving Humidity with id=" + id
       });
     });
+};
+
+exports.getAllHumidityMeasures = (req,res) => {
+	Humidity.findAll()
+	.then(results => res.json(results))
+	.catch(error => res.status(400).json({error}));
 };

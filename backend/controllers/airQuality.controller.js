@@ -1,4 +1,7 @@
-const AirQuality = require('../models/airQuality.model');
+const db = require("../models");
+const AirQuality = db.airquality;
+
+const Op = db.Sequelize.Op;
 
 exports.addAirQualityMeasure = (req, res) => {
   if (!req.body.ppm) {
@@ -38,4 +41,10 @@ exports.findOneAirQualityMeasure = (req, res) => {
         message: "Error retrieving air quality measure with id=" + id
       });
     });
+};
+
+exports.getAllppmMeasures = function(req, res) {
+  AirQuality.findAll()
+      .then(results => res.json(results))
+      .catch(error => res.status(400).json({error}));
 };

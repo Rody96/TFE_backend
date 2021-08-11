@@ -1,30 +1,19 @@
-const seq = require("../config/sequelize.config");
-const Sequelize = seq.Sequelize, Model = seq.Model, sequelize = seq.sequelize, DataTypes = seq.DataTypes;
-const Users = require("./users.model");
-class Humidity extends Model {}
-
-  Humidity.init({
+module.exports = (sequelize, Sequelize) => {
+  const Humidity = sequelize.define("humidity", {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     airHumidity: {
-      type: DataTypes.FLOAT,
+      type: Sequelize.FLOAT,
       allowNull:false
     },
-    userId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Users,
-        key: 'id'
-    }
-  }
   },{
-      sequelize,
-      modelName: 'Humidity'
-  });
+    sequelize,
+    modelName: 'Humidity'
+});
 
-  module.exports = Humidity;
+  return Humidity;
+};
