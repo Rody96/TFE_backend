@@ -7,14 +7,14 @@
     <script>
 
         function send(){
-            fetch("https://tfe-api.herokuapp.com/users/signin", {
+            fetch("https://rodrigue-projects.site/api/auth/signin", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    "mail": "A.jones@test.com",
+                    "mail": "toto@test.com",
                     "password": "test"
                 })
                  })
@@ -25,22 +25,7 @@
                 });
         }
 
-            function logout(){
-            const url = 'https://tfe-api.herokuapp.com/users/logout'
-            fetch(url, {
-            method: 'GET',
-            headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-            },
-            }).then((response) => response.json())
-            .then((json) => {
-                console.log(json);
-             })
-            .catch((error) => {
-                 console.error(error);
-            });
-        }
+
         
 
     </script>
@@ -48,6 +33,5 @@
 <body>
     <h1>TFE API</h1>
     <button type="button" onclick="send()">Login</button>
-    <button type="button" onclick="logout()">Logout</button>
 </body>
 </html>

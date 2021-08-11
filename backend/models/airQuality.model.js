@@ -1,31 +1,19 @@
-const seq = require("../config/sequelize.config");
-const Sequelize = seq.Sequelize, Model = seq.Model, sequelize = seq.sequelize, DataTypes = seq.DataTypes;
-const Users = require("./users.model");
-class AirQuality extends Model {}
-
-  AirQuality.init({
+module.exports = (sequelize, Sequelize) => {
+  const AirQuality = sequelize.define("airquality", {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     ppm: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull:false
     },
-    userId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Users,
-        key: 'id'
-    }
-  }
-  },
-  {
+  },{
     sequelize,
     modelName: 'AirQuality'
   });
 
-  module.exports = AirQuality;
+  return AirQuality;
+};

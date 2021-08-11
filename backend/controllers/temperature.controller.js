@@ -1,4 +1,7 @@
-const Temperature = require("../models/temperature.model");
+const db = require("../models");
+const Temperature = db.temperature;
+
+const Op = db.Sequelize.Op;
 
 exports.addTemperatureMeasure = (req, res) => {
   if (!req.body.temperature) {
@@ -41,7 +44,7 @@ exports.findOneTemperatureMeasure = (req, res) => {
 };
 
 exports.getAllTemperatureMeasures = function(req, res) {
-    Temperature.findAll()
-        .then(results => res.json(results))
-        .catch(error => res.status(400).json({error}));
+  Temperature.findAll()
+      .then(results => res.json(results))
+      .catch(error => res.status(400).json({error}));
 };
