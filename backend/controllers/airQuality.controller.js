@@ -1,6 +1,6 @@
 const db = require("../models");
 const AirQuality = db.airquality;
-
+const sequelize = db.sequelize;
 const Op = db.Sequelize.Op;
 
 exports.addAirQualityMeasure = (req, res) => {
@@ -48,3 +48,9 @@ exports.getAllppmMeasures = function(req, res) {
       .then(results => res.json(results))
       .catch(error => res.status(400).json({error}));
 };
+
+exports.getppmByDay = function(req, res) {
+  sequelize.query('select * from test.airqualities where DATE(createdAt) = '+ req.query.createdAt)
+  .then(results => res.json(results[0]))
+  .catch(error => res.status(400).json(error));
+}

@@ -1,6 +1,6 @@
 const db = require("../models");
 const Humidity = db.humidity;
-
+const sequelize = db.sequelize;
 const Op = db.Sequelize.Op;
 
 exports.addHumidityeMeasure = (req, res) => {
@@ -48,3 +48,9 @@ exports.getAllHumidityMeasures = (req,res) => {
 	.then(results => res.json(results))
 	.catch(error => res.status(400).json({error}));
 };
+
+exports.getHumidityByDay = function(req, res) {
+  sequelize.query('select * from test.humidities where DATE(createdAt) = '+ req.query.createdAt)
+  .then(results => res.json(results[0]))
+  .catch(error => res.status(400).json(error));
+}

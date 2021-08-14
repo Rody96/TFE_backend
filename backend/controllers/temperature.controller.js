@@ -1,6 +1,6 @@
 const db = require("../models");
 const Temperature = db.temperature;
-
+const sequelize = db.sequelize;
 const Op = db.Sequelize.Op;
 
 exports.addTemperatureMeasure = (req, res) => {
@@ -48,3 +48,9 @@ exports.getAllTemperatureMeasures = function(req, res) {
       .then(results => res.json(results))
       .catch(error => res.status(400).json({error}));
 };
+
+exports.getTemperatureByDay = function(req, res) {
+  sequelize.query('select * from test.temperatures where DATE(createdAt) = '+ req.query.createdAt)
+  .then(results => res.json(results[0]))
+  .catch(error => res.status(400).json(error));
+}
