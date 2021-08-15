@@ -44,13 +44,14 @@ db.sequelize.sync().then(() => {
 const temperatureRoute =  require("./routes/temperature.routes")
 const airQualityRoute = require("./routes/airQuality.routes")
 const humidityRoute = require("./routes/humidity.routes");
+const fanRoute = require("./routes/fan.routes");
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
 app.use("/temperature", temperatureRoute);
 app.use("/airquality", airQualityRoute);
 app.use("/humidity", humidityRoute);
-//app.use("/users", usersRoute);
+app.use("/fan", fanRoute);
 ////////////////////////////////////////////////
 
 ///////////////////////////////////////////////
