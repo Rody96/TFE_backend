@@ -8,7 +8,5 @@ const controllerTemperature = require("../controllers/temperature.controller");
   router.get('/all', (req,res) => controllerTemperature.getAllTemperatureMeasures(req,res));
   //Get temperature by day
   router.get('/day', (req,res) => controllerTemperature.getTemperatureByDay(req, res))
-  //Search one temperature measure
-  router.get("/:id", controllerTemperature.findOneTemperatureMeasure);
 
   module.exports = router;

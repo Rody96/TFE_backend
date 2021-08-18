@@ -4,34 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFE API</title>
-    <script>
-
-        function send(){
-            fetch("https://rodrigue-projects.site/api/auth/signin", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    "mail": "toto@test.com",
-                    "password": "test"
-                })
-                 })
-                .then((response) => response.json())
-                .then((json) => console.log("Results: ", json))
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-
-        
-
-    </script>
 </head>
 <body>
     <h1>TFE API</h1>
-    <button type="button" onclick="send()">Login</button>
 </body>
 </html>

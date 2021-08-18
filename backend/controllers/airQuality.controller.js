@@ -29,20 +29,6 @@ exports.addAirQualityMeasure = (req, res) => {
     });
 };
 
-exports.findOneAirQualityMeasure = (req, res) => {
-  const id = req.params.id;
-
-  AirQuality.findByPk(id)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving air quality measure with id=" + id
-      });
-    });
-};
-
 exports.getAllppmMeasures = function(req, res) {
   AirQuality.findAll()
       .then(results => res.json(results))

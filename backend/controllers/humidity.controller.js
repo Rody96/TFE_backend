@@ -29,20 +29,6 @@ exports.addHumidityeMeasure = (req, res) => {
     });
 };
 
-exports.findOneHumidityMeasure = (req, res) => {
-  const id = req.params.id;
-
-  Humidity.findByPk(id)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving Humidity with id=" + id
-      });
-    });
-};
-
 exports.getAllHumidityMeasures = (req,res) => {
 	Humidity.findAll()
 	.then(results => res.json(results))

@@ -29,20 +29,6 @@ exports.addTemperatureMeasure = (req, res) => {
     });
 };
 
-exports.findOneTemperatureMeasure = (req, res) => {
-  const id = req.params.id;
-
-  Temperature.findByPk(id)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving temperature measure with id=" + id
-      });
-    });
-};
-
 exports.getAllTemperatureMeasures = function(req, res) {
   Temperature.findAll()
       .then(results => res.json(results))
