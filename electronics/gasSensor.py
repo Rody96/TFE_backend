@@ -12,7 +12,7 @@ def main_func():
     gasMeasurement = decoded_values
 
     print(gasMeasurement)
-    r = requests.post("https://rodrigue-projects.site/airquality/add", data = {'ppm': gasMeasurement, 'userId':1})
+    r = requests.post("https://rodrigue-projects.site/airquality/add", data = {'ppm': gasMeasurement, 'userId':17})
     print(r.text)
 
 
@@ -28,7 +28,7 @@ gasMeasurement = ""
 
 print('Program started')
 
-schedule.every(60).seconds.do(main_func)
+schedule.every(600).seconds.do(main_func)
 
 while True:
     schedule.run_pending()

@@ -7,7 +7,7 @@ ser = serial.Serial('COM4', 9600)
 
 
 def led_on_off():
-    r = requests.get("https://rodrigue-projects.site/users/getFanState?id=1")
+    r = requests.get("https://rodrigue-projects.site/users/getFanState?id=17")
     fanState = r.json()[0]['fanState']
     user_input = fanState
     if user_input == 1:

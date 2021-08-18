@@ -15,8 +15,8 @@ def main_func():
         list_in_floats.append(float(item))
 
     print(f'Collected readings from Arduino: {list_in_floats}')
-    r = requests.post("https://rodrigue-projects.site/temperature/add", data = {'temperature':list_in_floats[0], 'userId':1})
-    r2 = requests.post("https://rodrigue-projects.site/humidity/add", data = {'airHumidity':list_in_floats[1], 'userId':1})
+    r = requests.post("https://rodrigue-projects.site/temperature/add", data = {'temperature':list_in_floats[0], 'userId':17})
+    r2 = requests.post("https://rodrigue-projects.site/humidity/add", data = {'airHumidity':list_in_floats[1], 'userId':17})
 
     print(r.text)
     print(r2.text)
@@ -35,7 +35,7 @@ list_in_floats = []
 
 print('Program started')
 
-schedule.every(60).seconds.do(main_func)
+schedule.every(600).seconds.do(main_func)
 
 while True:
     schedule.run_pending()
