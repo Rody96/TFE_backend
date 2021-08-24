@@ -1,3 +1,4 @@
+//Based on tutorial from BezKoder.com
 const db = require("../models");
 const config = require("../config/auth.config");
 const { user: User, role: Role, refreshToken: RefreshToken } = db;
@@ -40,6 +41,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  //Search User from database
   User.findOne({
     where: {
       mail: req.body.mail

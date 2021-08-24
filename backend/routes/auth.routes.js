@@ -1,3 +1,4 @@
+//Based on tutorial from BezKoder.com
 const { verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
 
